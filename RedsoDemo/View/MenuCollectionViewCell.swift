@@ -25,7 +25,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         setupMenuCell()
         
     
-        self.backgroundColor = .blue
+        self.backgroundColor = .black
     }
     
     required init?(coder aDecoder: NSCoder) {

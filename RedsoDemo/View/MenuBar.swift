@@ -34,15 +34,19 @@ extension MenuBar:UICollectionViewDataSource,UICollectionViewDelegate,UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
-        let x = CGFloat(indexPath.item) * frame.width / 4
-        UIView.animate(withDuration: 0.3) {
-            self.horizontalBarledingAnchorConstraint?.constant = x
-            self.layoutIfNeeded()
-        }
-        
+//        print(indexPath.item)
+//        let x = CGFloat(indexPath.item) * frame.width / 4
+//        UIView.animate(withDuration: 0.3) {
+//            self.horizontalBarledingAnchorConstraint?.constant = x
+//            self.layoutIfNeeded()
+//        }
+        HomeSwipViewController?.scrollToMenuIndex(menuIndex: indexPath.item)
         
     }
+    
+    
+   
+    
 }
 
 
@@ -50,13 +54,13 @@ class MenuBar:UIView{
     
     
     
-    
+    var HomeSwipViewController:HomeSwipViewController?
 
     
     let collectionView :UICollectionView = {
         let flowlayout = UICollectionViewFlowLayout()
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: flowlayout)
-        collectionview.backgroundColor = UIColor.green
+        collectionview.backgroundColor = UIColor.black
         return collectionview
         }()
     

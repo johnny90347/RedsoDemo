@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         getJsonData(pageNumber: pageNumber)
         
         
-         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0.1734000428, alpha: 1)
+//         UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0.1734000428, alpha: 1)
         
        
         refreshcontrol.attributedTitle = NSAttributedString(string: "正在更新")
