@@ -11,7 +11,6 @@
 		0AF885AA22FBBA2800CDAE7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF885A822FBBA2800CDAE7C /* Main.storyboard */; };
 		0AF885AC22FBBA2900CDAE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF885AB22FBBA2900CDAE7C /* Assets.xcassets */; };
 		0AF885AF22FBBA2900CDAE7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF885AD22FBBA2900CDAE7C /* LaunchScreen.storyboard */; };
-		0AF885BA22FBC23F00CDAE7C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885B922FBC23F00CDAE7C /* HomeViewController.swift */; };
 		0AF885BC22FBC7FE00CDAE7C /* LogoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885BB22FBC7FE00CDAE7C /* LogoBar.swift */; };
 		0AF885BE22FBC81D00CDAE7C /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885BD22FBC81D00CDAE7C /* MenuBar.swift */; };
 		0AF885C022FBC89100CDAE7C /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */; };
@@ -20,6 +19,7 @@
 		0AF885C722FBF41400CDAE7C /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */; };
 		0AF885C922FC398600CDAE7C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885C822FC398600CDAE7C /* Model.swift */; };
 		0AF885CD22FC3BC000CDAE7C /* HomeSwipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885CC22FC3BC000CDAE7C /* HomeSwipViewController.swift */; };
+		0AF885CF22FC56A500CDAE7C /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */; };
 		2B936FAA43B258DD0DB6A5D7 /* Pods_RedsoDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 334ECE7CD53139A38E112911 /* Pods_RedsoDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,6 @@
 		0AF885AB22FBBA2900CDAE7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AF885AE22FBBA2900CDAE7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AF885B022FBBA2900CDAE7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AF885B922FBC23F00CDAE7C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0AF885BB22FBC7FE00CDAE7C /* LogoBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoBar.swift; sourceTree = "<group>"; };
 		0AF885BD22FBC81D00CDAE7C /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
@@ -39,6 +38,7 @@
 		0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		0AF885C822FC398600CDAE7C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0AF885CC22FC3BC000CDAE7C /* HomeSwipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSwipViewController.swift; sourceTree = "<group>"; };
+		0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		31E83AFF5BA02E51C0E77D1F /* Pods-RedsoDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedsoDemo.debug.xcconfig"; path = "Target Support Files/Pods-RedsoDemo/Pods-RedsoDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		334ECE7CD53139A38E112911 /* Pods_RedsoDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedsoDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1E825274A670FDC3A87237 /* Pods-RedsoDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedsoDemo.release.xcconfig"; path = "Target Support Files/Pods-RedsoDemo/Pods-RedsoDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -98,6 +98,7 @@
 				0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */,
 				0AF885C122FBD5DA00CDAE7C /* ImageTableViewCell.swift */,
 				0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */,
+				0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,7 +106,6 @@
 		0AF885B722FBC20800CDAE7C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0AF885B922FBC23F00CDAE7C /* HomeViewController.swift */,
 				0AF885CC22FC3BC000CDAE7C /* HomeSwipViewController.swift */,
 			);
 			path = Controller;
@@ -261,10 +261,10 @@
 			files = (
 				0AF885C922FC398600CDAE7C /* Model.swift in Sources */,
 				0AF885A522FBBA2800CDAE7C /* AppDelegate.swift in Sources */,
-				0AF885BA22FBC23F00CDAE7C /* HomeViewController.swift in Sources */,
 				0AF885C522FBD97700CDAE7C /* Extension.swift in Sources */,
 				0AF885C722FBF41400CDAE7C /* MenuCollectionViewCell.swift in Sources */,
 				0AF885BE22FBC81D00CDAE7C /* MenuBar.swift in Sources */,
+				0AF885CF22FC56A500CDAE7C /* HomeCollectionViewCell.swift in Sources */,
 				0AF885CD22FC3BC000CDAE7C /* HomeSwipViewController.swift in Sources */,
 				0AF885C222FBD5DA00CDAE7C /* ImageTableViewCell.swift in Sources */,
 				0AF885C022FBC89100CDAE7C /* PersonTableViewCell.swift in Sources */,

@@ -15,11 +15,32 @@ extension HomeSwipViewController: UICollectionViewDataSource,UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
-        let colors:[UIColor] = [.blue,.green,.red]
-        cell.backgroundColor = colors[indexPath.item]
-        return cell
+        if indexPath.item == 0 {
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
+           
+            cell.getJsonData(pageNumber: 0, category: "rangers",update: false)
+            return cell
+        }else if indexPath.item == 1 {
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
+        
+                 cell.getJsonData(pageNumber: 0, category: "elastic",update: false)
+//            cell.category = "elastic"
+            return cell
+        }else{
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
+    
+            cell.getJsonData(pageNumber: 0, category: "dynamo",update: false)
+//            cell.category = "dynamo"
+            
+            return cell
+        }
+//
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
+//
+//                    return cell
+        
+        
     }
     
     
@@ -88,7 +109,7 @@ class HomeSwipViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.isPagingEnabled = true
 
         
