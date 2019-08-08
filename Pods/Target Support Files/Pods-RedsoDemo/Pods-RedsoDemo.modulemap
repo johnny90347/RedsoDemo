@@ -1,0 +1,6 @@
+framework module Pods_RedsoDemo {
+  umbrella header "Pods-RedsoDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

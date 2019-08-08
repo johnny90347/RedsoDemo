@@ -40,5 +40,9 @@ class ImageTableViewCell: UITableViewCell {
         
     }
     
+    func configureImageCell (data:SingleData){
+        
+    }
+    
     
 }

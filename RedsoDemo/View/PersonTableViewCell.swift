@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PersonTableViewCell: UITableViewCell {
     
@@ -46,6 +47,13 @@ class PersonTableViewCell: UITableViewCell {
     }()
     
     
+    let adImageView: UIImageView = {
+        let imageview = UIImageView()
+        
+        return imageview
+    }()
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -59,11 +67,15 @@ class PersonTableViewCell: UITableViewCell {
     
     
     
+    
+    
     func setupPersonCell(){
         self.addSubview(nameLabel)
         self.addSubview(positionLabel)
         self.addSubview(skillTextView)
         self.addSubview(profileImageView)
+        self.addSubview(adImageView)
+      
         
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,30 +105,60 @@ class PersonTableViewCell: UITableViewCell {
         skillTextView.heightAnchor.constraint(equalToConstant: 60).isActive = true
         skillTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16).isActive = true
         
-        
+        adImageView.translatesAutoresizingMaskIntoConstraints = false
+        adImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        adImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        adImageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        adImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
     }
     
     
-    func updateCell(data:SingleData){
-        guard let name = data.name,
-            let position = data.position,
-            let expertisArray = data.expertise,
-            let avatar = data.avatar
-        else {return}
-        nameLabel.text = name
-        positionLabel.text = position
+    func configureCell(data:SingleData){
         
-        var expertisString = ""
-        for i  in expertisArray.enumerated(){
-            if i.offset == 0 {
-                expertisString = i.element
-            }else{
-                expertisString += "," + i.element
-            }
+        
+        profileImageView.image = nil
+        adImageView.image = nil
+        
+        
+        
+        if let urlString = data.url  {
+            let url = URL(string: urlString)
+            adImageView.sd_setImage(with: url, completed: nil)
         }
+        
+
+        
+        
+        
+        
+        if let name = data.name,
+                let position = data.position,
+                let expertisArray = data.expertise,
+            let avatarUrlString = data.avatar{
+            
+            var expertisString = ""
+            for i  in expertisArray.enumerated(){
+                if i.offset == 0 {
+                    expertisString = i.element
+                }else{
+                    expertisString += "," + i.element
+                }
+            }
+            
+            skillTextView.text = expertisString
+            nameLabel.text = name
+            positionLabel.text = position
+            profileImageView.sd_setImage(with: URL(string: avatarUrlString), completed: nil)
+            
+        }
+        
+            
+        
+            
+        
+      
        
-        skillTextView.text = expertisString
         
     }
   

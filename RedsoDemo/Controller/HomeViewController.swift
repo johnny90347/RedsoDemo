@@ -9,81 +9,72 @@
 import UIKit
 
 
-struct Result:Codable {
-    var results:[SingleData]
-}
-
-struct SingleData:Codable {
-    var name:String?
-    var position:String?
-    var expertise:[String]?
-    var avatar:String? //頭像
-    var url:String?
-}
-
-
-//struct PersonInfo {
-//    var name:String?
-//    var position:String?
-//    var expertise:String?
-//    var avatar:String?
-//    var url:String?
-//}
-
 
 
 class HomeViewController: UIViewController {
     
-    let logoBar:LogoBar = {
-        let view = LogoBar()
-        return view
-    }()
+   
     
-    let menuBar:MenuBar = {
-        let view = MenuBar()
-        return view
-    }()
+    var rangerInfos:[SingleData] = []
+    
+    var isDownloading = false
+    
+   
+    
+    let refreshcontrol = UIRefreshControl()
     
     let tableView = UITableView()
     
-    var personInfos = [SingleData]()
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        getJsonData()
+         setupTableView()
+        
+        getJsonData(pageNumber: pageNumber)
         
         
          UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0.1734000428, alpha: 1)
+        
+       
+        refreshcontrol.attributedTitle = NSAttributedString(string: "正在更新")
         
         
         tableView.register(PersonTableViewCell.self, forCellReuseIdentifier: "personCell")
         tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "imageCell")
         tableView.dataSource = self
         tableView.delegate = self
-   
+        tableView.refreshControl = refreshcontrol
+        refreshcontrol.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
 
-        setupLogoBar()
         
-        setupMenuBar()
         
-        setupTableView()
-        
-       
-     
+
     }
     
-    func getJsonData(){
+    @objc func refresh(){
+        print("更新")
+        self.refreshcontrol.endRefreshing()
+    }
+    
+    private func setupTableView(){
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        tableView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+
+    
+    
+     var pageNumber = 0
+    
+    
+    func getJsonData(pageNumber:Int){
+         self.isDownloading = true
         
-        
-        let urlString = "https://us-central1-redso-challenge.cloudfunctions.net/catalog?team=rangers&page=0"
+        let urlString = "https://us-central1-redso-challenge.cloudfunctions.net/catalog?team=rangers&page=\(pageNumber)"
         
         guard let url = URL(string: urlString) else {return}
         
@@ -94,15 +85,31 @@ class HomeViewController: UIViewController {
                 print("獲取資料失敗")
                 return
             }
+           
             guard let data = data else {return}
+            print(data.count)
+            self.pageNumber += 1
+            
+            if data.count <= 40 { //data太小就跳出 不往下跑了
+                self.isDownloading = false
+                return
+            }
+            
             do{
+                
                 let jsonData = try JSONDecoder().decode(Result.self, from: data)
-                self.personInfos = jsonData.results
+                
+                for info in jsonData.results {
+                    self.rangerInfos.append(info)
+                }
+                
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.isDownloading = false
                 }
             }catch{
                 print("解析失敗")
+                return
             }
             
             
@@ -117,42 +124,7 @@ class HomeViewController: UIViewController {
     
     
     
-    
-    
-  
-    
-    private func setupLogoBar(){
-        
-        view.addSubview(logoBar)
-        logoBar.translatesAutoresizingMaskIntoConstraints = false
-        logoBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        logoBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-        logoBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        logoBar.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-        
-    }
-    
-    
-    private func setupMenuBar(){
-        view.addSubview(menuBar)
-        menuBar.translatesAutoresizingMaskIntoConstraints = false
-        menuBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        menuBar.topAnchor.constraint(equalTo: logoBar.bottomAnchor).isActive = true
-        menuBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        menuBar.heightAnchor.constraint(equalToConstant: 60).isActive = true
-    }
-    
-    
-    
-    private func setupTableView(){
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: menuBar.bottomAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
+ 
    
 
 }
@@ -166,23 +138,30 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return personInfos.count
+        return rangerInfos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath) as! ImageTableViewCell
-            
-            
-            return cell
-        }else{
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "personCell", for: indexPath) as! PersonTableViewCell
-            cell.updateCell(data: personInfos[indexPath.row])
+            cell.configureCell(data: rangerInfos[indexPath.row])
             
             return cell
-        }
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.height
+        let contentOffsetY = scrollView.contentOffset.y
+        let bottomContenOffsetY = contentOffsetY - height
+        if bottomContenOffsetY  <= height {
+            
+            if isDownloading == false && pageNumber <= 9{
+                getJsonData(pageNumber: pageNumber)
+            }
+           
+        }
     }
     
     

@@ -23,6 +23,8 @@ class MenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupMenuCell()
+        
+    
         self.backgroundColor = .blue
     }
     
@@ -51,5 +53,8 @@ class MenuCollectionViewCell: UICollectionViewCell {
         categoreLabel.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
     }
+    
+    
+   
     
 }
