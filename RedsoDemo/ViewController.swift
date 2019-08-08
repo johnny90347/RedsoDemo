@@ -12,9 +12,37 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupLogoBar()
+      
     }
 
+    
+    let logoBar : LogoBar = {
+        
+        let logoBar = LogoBar()
+        return logoBar
+    }()
 
+    
+    private func setupLogoBar(){
+        
+    }
+    
 }
 
+
+class LogoBar: UIView {
+    
+    
+    override init(frame: CGRect) {
+        super .init(frame: frame)
+        
+        self.backgroundColor = .black
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
