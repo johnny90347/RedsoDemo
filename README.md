@@ -5,5 +5,5 @@
         能夠垂直滾動以加載更多內容
         追蹤正在看哪個
 
-![image]()
-![image]()
+![image](https://github.com/johnny90347/RedsoDemo/blob/master/demo1.png)
+![image](https://github.com/johnny90347/RedsoDemo/blob/master/demo2.png)
