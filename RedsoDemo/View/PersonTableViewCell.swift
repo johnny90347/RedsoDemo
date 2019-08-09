@@ -9,6 +9,11 @@
 import UIKit
 import SDWebImage
 
+
+
+
+
+
 class PersonTableViewCell: UITableViewCell {
     
     let profileImageView:UIImageView = {

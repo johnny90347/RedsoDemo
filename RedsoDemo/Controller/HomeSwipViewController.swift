@@ -18,28 +18,24 @@ extension HomeSwipViewController: UICollectionViewDataSource,UICollectionViewDel
         
         if indexPath.item == 0 {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-           
-            cell.getJsonData(pageNumber: 0, category: "rangers",update: false)
+                cell.fetchCategoryFeed(category: "rangers",pageNumber: 0)
+//            cell.getJsonData(pageNumber: 0, category: "rangers",update: false)
             return cell
         }else if indexPath.item == 1 {
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-        
-                 cell.getJsonData(pageNumber: 0, category: "elastic",update: false)
-//            cell.category = "elastic"
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "elasticCell", for: indexPath) as! ElasticCell
+
+            cell.fetchCategoryFeed(category: "elastic",pageNumber: 0)
+
             return cell
         }else{
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-    
-            cell.getJsonData(pageNumber: 0, category: "dynamo",update: false)
-//            cell.category = "dynamo"
-            
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dynamoCell", for: indexPath) as! DynamoCell
+
+            cell.fetchCategoryFeed(category: "dynamo",pageNumber: 0)
+
             return cell
         }
-//
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
-//
-//                    return cell
         
+       
         
     }
     
@@ -64,7 +60,7 @@ extension HomeSwipViewController: UICollectionViewDataSource,UICollectionViewDel
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         
-        print(targetContentOffset.move().x / view.frame.width)
+//        print(targetContentOffset.move().x / view.frame.width)
         let index = targetContentOffset.move().x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -105,11 +101,15 @@ class HomeSwipViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
+        
          UIApplication.shared.statusBarView?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0.1734000428, alpha: 1)
         
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(ElasticCell.self, forCellWithReuseIdentifier: "elasticCell")
+        collectionView.register(DynamoCell.self, forCellWithReuseIdentifier: "dynamoCell")
         collectionView.isPagingEnabled = true
 
         
@@ -120,7 +120,7 @@ class HomeSwipViewController: UIViewController {
         setupCollectionView()
         
         
-        
+    
       
        
     }

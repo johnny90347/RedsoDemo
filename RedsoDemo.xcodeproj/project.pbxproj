@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AAA8FEF22FD0AC800AB623C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA8FEE22FD0AC800AB623C /* APIService.swift */; };
 		0AF885A522FBBA2800CDAE7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF885A422FBBA2800CDAE7C /* AppDelegate.swift */; };
 		0AF885AA22FBBA2800CDAE7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF885A822FBBA2800CDAE7C /* Main.storyboard */; };
 		0AF885AC22FBBA2900CDAE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AF885AB22FBBA2900CDAE7C /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AAA8FEE22FD0AC800AB623C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0AF885A122FBBA2800CDAE7C /* RedsoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedsoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AF885A422FBBA2800CDAE7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AF885A922FBBA2800CDAE7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,9 +98,9 @@
 				0AF885BB22FBC7FE00CDAE7C /* LogoBar.swift */,
 				0AF885BD22FBC81D00CDAE7C /* MenuBar.swift */,
 				0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */,
-				0AF885C122FBD5DA00CDAE7C /* ImageTableViewCell.swift */,
 				0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */,
 				0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */,
+				0AF885C122FBD5DA00CDAE7C /* ImageTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				0AF885C822FC398600CDAE7C /* Model.swift */,
+				0AAA8FEE22FD0AC800AB623C /* APIService.swift */,
 			);
 			path = Mode;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				0AF885A522FBBA2800CDAE7C /* AppDelegate.swift in Sources */,
 				0AF885C522FBD97700CDAE7C /* Extension.swift in Sources */,
 				0AF885C722FBF41400CDAE7C /* MenuCollectionViewCell.swift in Sources */,
+				0AAA8FEF22FD0AC800AB623C /* APIService.swift in Sources */,
 				0AF885BE22FBC81D00CDAE7C /* MenuBar.swift in Sources */,
 				0AF885CF22FC56A500CDAE7C /* HomeCollectionViewCell.swift in Sources */,
 				0AF885CD22FC3BC000CDAE7C /* HomeSwipViewController.swift in Sources */,
