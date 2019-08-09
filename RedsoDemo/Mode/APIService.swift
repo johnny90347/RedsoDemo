@@ -26,7 +26,7 @@ class APIService:NSObject{
             }
             
             guard let data = data else {return}
-            print(data.count)
+            print("資料大小是\(data.count)")
             if data.count <= 30 {
                 print("沒東西 不解析")
                 return

@@ -55,7 +55,7 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
         
         
         tableView.register(PersonTableViewCell.self, forCellReuseIdentifier: "personCell")
-        tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: "imageCell")
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.refreshControl = refreshcontrol
@@ -70,25 +70,23 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
     var isDownloading = false
     var pageNumber = 0
     var category:String?
-    var update:Bool = true
     
     
     func fetchCategoryFeed(category:String,pageNumber:Int){
         
-        if isDownloading == false {
+        
             self.category = category
-            isDownloading = true
             APIService.shareInstance.fetchFeed(category: category, pageNumber: pageNumber) {[weak self] (data) in
                 guard let self = self else {return}
                 self.rangerInfos = data
-                
-                self.isDownloading = false
+
                 self.pageNumber = 1
+                self.isDownloading = false
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
-        }
+        
        
     }
     
@@ -96,7 +94,7 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
     
     func updateCategoryFeed(category:String,pageNumber:Int){
         
-        if isDownloading == false {
+        
             self.category = category
             isDownloading = true
             APIService.shareInstance.fetchFeed(category: category, pageNumber: pageNumber) {[weak self] (data) in
@@ -109,7 +107,7 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            }
+            
         }
         
     }
@@ -125,7 +123,7 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
     @objc func refresh(){
         print("更新")
         refreshcontrol.endRefreshing()
-//        getJsonData(pageNumber: pageNumber, category: category!)
+        fetchCategoryFeed(category: category!, pageNumber: 0)
     }
     
     private func setupTableView(){
@@ -138,16 +136,7 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
     }
     
     
-//    func getJsonData(pageNumber:Int,category:String,update:Bool){
-//
-//            self.isDownloading = true
-//            self.category = category
-//            self.update = update
-//            self.pageNumber = pageNumber
-//
-//
-//        }
-    
+
     
 
     
@@ -157,8 +146,8 @@ class HomeCollectionViewCell: UICollectionViewCell,UITableViewDataSource,UITable
                 let contentOffsetY = scrollView.contentOffset.y
                 let bottomContenOffsetY = contentOffsetY - height
                 if bottomContenOffsetY  <= height {
-                    update = true
-                    if isDownloading == false && pageNumber <= 9 && update == true{
+                   
+                    if isDownloading == false && pageNumber <= 9{
                         updateCategoryFeed(category: category!, pageNumber: pageNumber)
                     }
 
