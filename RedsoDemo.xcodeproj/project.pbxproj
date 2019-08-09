@@ -56,6 +56,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AAA8FF022FD587800AB623C /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				0AF885BD22FBC81D00CDAE7C /* MenuBar.swift */,
+				0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		0AAA8FF122FD588800AB623C /* LogoBar */ = {
+			isa = PBXGroup;
+			children = (
+				0AF885BB22FBC7FE00CDAE7C /* LogoBar.swift */,
+			);
+			path = LogoBar;
+			sourceTree = "<group>";
+		};
+		0AAA8FF222FD592500AB623C /* DataDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */,
+				0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */,
+			);
+			path = DataDisplay;
+			sourceTree = "<group>";
+		};
 		0AF8859822FBBA2800CDAE7C = {
 			isa = PBXGroup;
 			children = (
@@ -93,11 +119,9 @@
 		0AF885B622FBBBD000CDAE7C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AF885BB22FBC7FE00CDAE7C /* LogoBar.swift */,
-				0AF885BD22FBC81D00CDAE7C /* MenuBar.swift */,
-				0AF885BF22FBC89100CDAE7C /* PersonTableViewCell.swift */,
-				0AF885C622FBF41400CDAE7C /* MenuCollectionViewCell.swift */,
-				0AF885CE22FC56A500CDAE7C /* HomeCollectionViewCell.swift */,
+				0AAA8FF122FD588800AB623C /* LogoBar */,
+				0AAA8FF022FD587800AB623C /* MenuBar */,
+				0AAA8FF222FD592500AB623C /* DataDisplay */,
 			);
 			path = View;
 			sourceTree = "<group>";

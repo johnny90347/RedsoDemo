@@ -34,12 +34,7 @@ extension MenuBar:UICollectionViewDataSource,UICollectionViewDelegate,UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        print(indexPath.item)
-//        let x = CGFloat(indexPath.item) * frame.width / 4
-//        UIView.animate(withDuration: 0.3) {
-//            self.horizontalBarledingAnchorConstraint?.constant = x
-//            self.layoutIfNeeded()
-//        }
+
         HomeSwipViewController?.scrollToMenuIndex(menuIndex: indexPath.item)
         
     }
@@ -72,8 +67,8 @@ class MenuBar:UIView{
         
         collectionView.dataSource = self
         collectionView.delegate = self
-            collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "menuCell")
-//        self.backgroundColor = .green
+        collectionView.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "menuCell")
+
         
         setupMenuBar()
         
@@ -90,22 +85,17 @@ class MenuBar:UIView{
 }
     
     
-    func setupMenuBar(){
-        
-        self.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        
-    }
+    
+    
+  
     
     var horizontalBarledingAnchorConstraint:NSLayoutConstraint?
     
+    
+    
+    //MARK: 水平bar 設置
     func setupHorizontalBar(){
-        
+  
         let horizontalBarView = UIView()
         horizontalBarView.backgroundColor = .white
         self.addSubview(horizontalBarView)
@@ -118,7 +108,17 @@ class MenuBar:UIView{
         
     }
     
-       
+    //MARK: mrnuBar 設置
+    func setupMenuBar(){
+        
+        self.addSubview(collectionView)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+    }
 
 
 }

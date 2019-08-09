@@ -14,18 +14,21 @@ extension HomeSwipViewController: UICollectionViewDataSource,UICollectionViewDel
         return 3
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        //return 3個cell 之後cell內容要換就很方便
         
         if indexPath.item == 0 {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
                 cell.fetchCategoryFeed(category: "rangers",pageNumber: 0)
-//            cell.getJsonData(pageNumber: 0, category: "rangers",update: false)
             return cell
         }else if indexPath.item == 1 {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "elasticCell", for: indexPath) as! ElasticCell
 
             cell.fetchCategoryFeed(category: "elastic",pageNumber: 0)
-
             return cell
         }else{
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dynamoCell", for: indexPath) as! DynamoCell
@@ -53,14 +56,14 @@ extension HomeSwipViewController: UICollectionViewDataSource,UICollectionViewDel
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        //滾動時 拿 contenoffset.x / 4  更動menuBar 中的 水平bar 的 constraint 讓他追蹤到相對位置
         menuBar.horizontalBarledingAnchorConstraint?.constant = scrollView.contentOffset.x / 4
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         
-//        print(targetContentOffset.move().x / view.frame.width)
+        // 滑動collectionview的cell  menubar 被選中相對應的item
         let index = targetContentOffset.move().x / view.frame.width
         let indexPath = IndexPath(item: Int(index), section: 0)
         menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -77,6 +80,7 @@ class HomeSwipViewController: UIViewController {
         let view = LogoBar()
         return view
     }()
+    
     //****
     lazy var menuBar:MenuBar = {
         let view = MenuBar()
